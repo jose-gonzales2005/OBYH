@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4bc3530661443489882134ea23f060, type: 3}
+  m_Name: FrameIntro
+  m_EditorClassIdentifier: 
+  dialogue:
+  - "It\u2019s a beautiful portrait of a family."
+  - "There\u2019s a man standing behind a woman sitting on a chair, his hand is on
+    her shoulder. "
+  - "The woman has a big smile but there\u2019s something about her eyes that makes
+    it look fake.\n\n"
+  - "I\u2019ve seen those eyes before filled with hatred, I know it\u2019s Priscilla
+    Abernathy. \U0001F92E"
+  responses: []

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4bc3530661443489882134ea23f060, type: 3}
+  m_Name: ReadLetter
+  m_EditorClassIdentifier: 
+  dialogue:
+  - You pick up the letter and begin reading.
+  - "Dear Mama, I know you\u2019ve always wanted me to have as fine a life as you
+    with my father. I\u2019m living in high cotton here. "
+  - "Huck is off on another business trip for who knows how long. He\u2019s away
+    more than he\u2019s home nowadays;"
+  - "though I can\u2019t say I\u2019m all that disappointed to get a break from his
+    snorin\u2019. "
+  - 'I tell you my husband is hog-calling at night. Calliope can hear it even from
+    the maid room across the house. '
+  - "He is just like father in that regard. I don\u2019t know how you\u2019ve put
+    up with it this long, mama. "
+  - " If listenin\u2019 to him saw logs in bed is the price to stay here then I suppose
+    it\u2019s worth it.  I miss you, ma. I hope to see you soon."
+  - 'With love
+
+
+    - Priscilla'
+  responses:
+  - responseText: Hmmm
+    dialogueObject: {fileID: 11400000, guid: 9e66874f81d134eac830e576f3f50a90, type: 2}
