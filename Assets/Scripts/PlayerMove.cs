@@ -6,6 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private DialogueUI dialogueUI;
 
+    public PlayerCam myInstance;
+
     public DialogueUI DialogueUI => dialogueUI;
     public IInteractable Interactable { get; set; }
 
@@ -30,6 +32,8 @@ public class PlayerMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        GameObject playerCam = GameObject.Find("PlayerCamera");
+        myInstance = playerCam.GetComponent<PlayerCam>();
     }
 
     void Update()
@@ -40,10 +44,22 @@ public class PlayerMove : MonoBehaviour
         MyInput();
 
         //dialogue activator
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (myInstance.RayCheck())
+            {
+                Debug.Log("Hit");
+                Interactable?.Interact(this);
+            }
+        }
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("E pressed");
             Interactable?.Interact(this);
         }
+
+
     }
 
     void FixedUpdate()
@@ -67,10 +83,5 @@ public class PlayerMove : MonoBehaviour
         }
         else
             rb.drag = groundDrag;
-    }
-
-    private void SpeedControl()
-    {
-
     }
 }

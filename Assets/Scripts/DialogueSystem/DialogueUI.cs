@@ -14,6 +14,7 @@ public class DialogueUI : MonoBehaviour
 
     private ResponseHandler responseHandler;
     private TypewriterEffect typewriterEffect;
+    public bool CamMove;
 
     private void Start()
     {
@@ -29,8 +30,9 @@ public class DialogueUI : MonoBehaviour
         IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
-        //Debug.Log("unlocking cursor");
-        //Cursor.lockState = CursorLockMode.None;
+        Debug.Log("unlocking cursor");
+        CamMove = false; 
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
@@ -54,8 +56,8 @@ public class DialogueUI : MonoBehaviour
         {
             Debug.Log("Steppin");
             CloseDialogueBox();
-            //Debug.Log("locking cursor");
-            //Cursor.lockState = CursorLockMode.Locked;
+            Debug.Log("locking cursor");
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = true;
         }
     }
@@ -65,5 +67,6 @@ public class DialogueUI : MonoBehaviour
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
+        CamMove = true;
     }
 }
