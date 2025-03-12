@@ -2,21 +2,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
 {   
 
-    public PlayableDirector playableDirector;
+
     private VideoPlayer videoPlayer;
+    [SerializeField] private GameObject  skipButton;
     void Start()
     {
         GameObject camera = GameObject.Find("VideoPlayer");
         videoPlayer = camera.GetComponent<VideoPlayer>(); 
+        skipButton.SetActive(false);
     }
 
-    public void Play(float time)
+    public void Skip()
     {
-        playableDirector.time = time;
         SceneManager.LoadScene("PlayScene");
     }
 
@@ -27,6 +29,7 @@ public class MenuScript : MonoBehaviour
         GameObject button = GameObject.Find("StartButton");
         GameObject bg = GameObject.Find("BG");
 
+        skipButton.SetActive(true);
         button.SetActive(false);
         bg.SetActive(false);
 
