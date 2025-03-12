@@ -5,7 +5,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     [SerializeField] private DialogueObject dialogueObject;
 
     public PlayerMove player;
-    private bool inCollider = false;
+    public bool inCollider = false;
     public Color startcolor;
 
     void Start()
@@ -19,7 +19,9 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("enter collider");
             inCollider = true;
+            player.Interactable = this;
         }
     }
 
@@ -27,8 +29,10 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
+            //Debug.Log(player.Interactable);
             if (player.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
             {
+                player.Interactable = null;
                 inCollider = false;
             }
         }
@@ -40,26 +44,15 @@ public class DialogueActivator : MonoBehaviour, IInteractable
         player.DialogueUI.ShowDialogue(dialogueObject);
     }
 
-    public void OnMouseDown() 
+    /*public void OnMouseDown() 
     {
         if (inCollider)
             player.Interactable = this;            
     }
 
     public void OnMouseUp()
-    {   
+    {  
+        Debug.Log("mouse up");
         player.Interactable = null;
-    }
-
-    public void OnMouseEnter()
-    {
-        Debug.Log("Mouse entered, changing color");
-        startcolor = GetComponent<Renderer>().material.color;
-        GetComponent<Renderer>().material.color = Color.yellow;
-    }
-
-    public void OnMouseExit()
-    {
-        GetComponent<Renderer>().material.color = startcolor;
-    }
+    }*/
 }

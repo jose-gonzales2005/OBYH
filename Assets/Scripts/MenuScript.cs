@@ -1,25 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+using UnityEngine.Playables;
 
 public class MenuScript : MonoBehaviour
-{
-    // Start is called before the first frame update
+{   
+
+    public PlayableDirector playableDirector;
+    private VideoPlayer videoPlayer;
     void Start()
     {
-        
+        GameObject camera = GameObject.Find("VideoPlayer");
+        videoPlayer = camera.GetComponent<VideoPlayer>(); 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Play(float time)
     {
-        
+        playableDirector.time = time;
+        SceneManager.LoadScene("PlayScene");
     }
 
     public void OnMenuClick()
     {
-        Debug.Log("Loading Play");
-         SceneManager.LoadScene("PlayScene");
+        //fast fix
+        GameObject screen = GameObject.Find("Screen");
+        GameObject button = GameObject.Find("StartButton");
+        GameObject bg = GameObject.Find("BG");
+
+        button.SetActive(false);
+        bg.SetActive(false);
+
+        videoPlayer.Play();
+
+        videoPlayer.loopPointReached += OnLoopPointReached;
+        //screen.SetActive(false);
+    }
+    void OnLoopPointReached(VideoPlayer vp)
+    {  
+        Debug.Log("Loop finished");
+        SceneManager.LoadScene("PlayScene");
     }
 }

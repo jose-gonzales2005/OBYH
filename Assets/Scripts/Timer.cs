@@ -8,33 +8,32 @@ public class Timer : MonoBehaviour
 {
     public float TimeLeft;
     public bool TimerOn = false;
-
     public TMP_Text TimerTxt;
-
+    public GameObject gameOver;
 
     void Start()
     {
         TimerOn = true;
+        //gameOver = GameObject.Find("GameOver");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(TimerOn) 
+        if (TimerOn)
         {
-            if (TimeLeft > 0 )
+            if (TimeLeft > 0)
             {
                 TimeLeft -= Time.deltaTime;
                 updateTimer(TimeLeft);
             }
             else
             {
-                Debug.Log("times up");
                 TimeLeft = 0;
                 TimerOn = false;
+
+                gameOver.SetActive(true);
             }
         }
-        
     }
 
     void updateTimer(float currentTime)
