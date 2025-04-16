@@ -8,10 +8,10 @@ using UnityEngine;
 public class DialogueObject : ScriptableObject
 {
     // Start is called before the first frame update
-    [SerializeField] [TextArea] private string[] dialogue;
+    [SerializeField] private Utterance[] dialogue;
     [SerializeField] private Response[] responses;
 
-    public string[] Dialogue => dialogue;
+    public Utterance[] Dialogue => dialogue;
 
     public bool HasReponses => Responses != null && Responses.Length > 0;
 

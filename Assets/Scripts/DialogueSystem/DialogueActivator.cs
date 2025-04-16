@@ -6,7 +6,6 @@ public class DialogueActivator : MonoBehaviour, IInteractable
 
     public PlayerMove player;
     public bool inCollider = false;
-    public Color startcolor;
 
     void Start()
     {
@@ -19,7 +18,9 @@ public class DialogueActivator : MonoBehaviour, IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("enter collider");
+            //GameObject collidier = GameObject.Find(this);
+            //currentCollider.GetComponent<Collider>();
+            Debug.Log("entering collider: " + this);
             inCollider = true;
             player.Interactable = this;
         }
@@ -32,6 +33,7 @@ public class DialogueActivator : MonoBehaviour, IInteractable
             //Debug.Log(player.Interactable);
             if (player.Interactable is DialogueActivator dialogueActivator && dialogueActivator == this)
             {
+                Debug.Log("exiting collider: " + this);
                 player.Interactable = null;
                 inCollider = false;
             }

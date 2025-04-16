@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+//using
 
 
 
@@ -15,11 +16,18 @@ public class DialogueUI : MonoBehaviour
     private ResponseHandler responseHandler;
     private TypewriterEffect typewriterEffect;
     public bool CamMove;
+    public Image speakerObj;
+    private SpriteRenderer speakerRender;
+    public Sprite rjhImage;
+    public Sprite paImage;
 
     private void Start()
     {
         typewriterEffect = GetComponent<TypewriterEffect>();
         responseHandler = GetComponent<ResponseHandler>();
+
+        //when this has a null reference the players movement is reversed for some reason 
+        //speakerRender = speakerObj.GetComponent<SpriteRenderer>();
 
         CloseDialogueBox();
 
@@ -30,7 +38,8 @@ public class DialogueUI : MonoBehaviour
         IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
-        Debug.Log("unlocking cursor");
+
+        //Debug.Log("unlocking cursor");
         CamMove = false; 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -40,11 +49,24 @@ public class DialogueUI : MonoBehaviour
     {
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
-            string dialogue = dialogueObject.Dialogue[i];
+            Utterance dialogue = dialogueObject.Dialogue[i];
 
-            yield return RunTypingEffect(dialogue);
+            if (dialogue.Speaker == "RJH")
+            {
+                //Debug.Log("speakerObj is: " + speakerObj);
+                speakerObj.sprite = rjhImage;
+            } 
+            else if (dialogue.Speaker == "PA")
+            {
+                speakerObj.sprite = paImage;
+                //Debug.Log("uoahd");
+            }
+               //better way to do this? currently all images must be loaded into this UI script, feels ineffiecient as 
+               // its also referenced int the utterance class 
 
-            textLabel.text = dialogue;
+            yield return RunTypingEffect(dialogue.Spoke);
+
+            textLabel.text = dialogue.Spoke;
 
             if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasReponses) break;
 
@@ -54,6 +76,7 @@ public class DialogueUI : MonoBehaviour
 
         if (dialogueObject.HasReponses)
         {
+            //Debug.Log("responding");
             responseHandler.ShowResponses(dialogueObject.Responses);
         }
         else
@@ -88,4 +111,11 @@ public class DialogueUI : MonoBehaviour
         textLabel.text = string.Empty;
         CamMove = true;
     }
+
+     
+        /*if (playerCam.name.Contains("Bob"))
+        (
+            return "boob";
+        )*/
+    
 }

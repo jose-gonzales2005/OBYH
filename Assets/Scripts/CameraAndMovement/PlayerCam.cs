@@ -56,7 +56,7 @@ public class PlayerCam : MonoBehaviour
             Transform objectHit = hit.transform;
             
             DialogueActivator dialogueActivator = objectHit.gameObject.GetComponentInParent<DialogueActivator>();
-            Debug.Log(dialogueActivator);
+            //Debug.Log(dialogueActivator);
 
             if (dialogueActivator != null && dialogueActivator.inCollider)
                 Debug.Log("Return true");

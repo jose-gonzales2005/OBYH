@@ -46,7 +46,7 @@ public class PlayerMove : MonoBehaviour
         //dialogue activator
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("click");
+            //Debug.Log("click");
             if (myInstance.RayCheck())
             {
                 Debug.Log("Hit");

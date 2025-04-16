@@ -7,7 +7,7 @@ public class Highlight : MonoBehaviour
     public Color startcolor;
     void Start()
     {
-        Debug.Log("is this thing on");
+        
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class Highlight : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        Debug.Log("Mouse entered, changing color");
+        //Debug.Log("Mouse entered, changing color");
         startcolor = GetComponent<Renderer>().material.color;
         GetComponent<Renderer>().material.color = Color.yellow;
     }

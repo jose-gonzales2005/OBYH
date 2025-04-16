@@ -32,6 +32,7 @@ public class Timer : MonoBehaviour
                 TimerOn = false;
 
                 gameOver.SetActive(true);
+                Time.timeScale = 0;
             }
         }
     }
